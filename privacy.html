@@ -3,61 +3,473 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy – DriveFinder</title>
+  <meta name="description" content="Insquad DriveFinder Privacy Policy - How we protect your data when using our Google Drive search Chrome extension">
+  <title>Privacy Policy - Insquad DriveFinder</title>
   <style>
+    :root {
+      --primary: #2563EB;
+      --primary-dark: #1D4ED8;
+      --primary-light: #DBEAFE;
+      --accent: #3B82F6;
+      --text: #1E293B;
+      --text-light: #64748B;
+      --background: #F8FAFC;
+      --white: #FFFFFF;
+      --light-blue: #EFF6FF;
+      --mid-blue: #BFDBFE;
+      --border: #E2E8F0;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      color: var(--text);
       line-height: 1.6;
-      color: #333;
+      background-color: var(--background);
     }
-    h1 {
-      color: #E85959;
+    
+    header {
+      background-color: var(--white);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    a {
-      color: #E85959;
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo {
+      width: 36px;
+      margin-right: 12px;
+    }
+    
+    .logo-text {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 28px;
+    }
+    
+    nav ul li a {
       text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
     }
-    a:hover {
-      text-decoration: underline;
+    
+    nav ul li a:hover {
+      color: var(--primary);
+    }
+
+    .page-header {
+      background: linear-gradient(135deg, var(--light-blue) 0%, var(--white) 100%);
+      padding: 80px 24px;
+      text-align: center;
+    }
+    
+    .page-header-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: var(--text);
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+    }
+    
+    .page-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .content-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      background-color: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      margin-top: -40px;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 60px;
+    }
+    
+    .policy-section {
+      margin-bottom: 40px;
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--primary);
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background-color: var(--primary-light);
+      border-radius: 2px;
+    }
+    
+    ul, ol {
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+    
+    li {
+      margin-bottom: 8px;
+    }
+    
+    p {
+      margin-bottom: 16px;
+    }
+    
+    .highlight-box {
+      background-color: var(--light-blue);
+      border-left: 4px solid var(--primary);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 24px 0;
+    }
+    
+    .effective-date {
+      font-style: italic;
+      color: var(--text-light);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    
+    .contact-box {
+      background-color: var(--light-blue);
+      padding: 24px;
+      border-radius: 8px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    
+    .contact-box h3 {
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    
+    .contact-link:hover {
+      color: var(--primary-dark);
+    }
+    
+    .contact-link svg {
+      margin-right: 8px;
+    }
+    
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 20px;
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    
+    .back-link:hover {
+      color: var(--primary-dark);
+    }
+    
+    .back-link svg {
+      margin-right: 8px;
+    }
+
+    footer {
+      background-color: var(--text);
+      color: #fff;
+      padding: 64px 24px 32px;
+    }
+    
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    
+    .footer-column {
+      width: 250px;
+      margin-bottom: 32px;
+    }
+    
+    .footer-column h3 {
+      color: #fff;
+      margin-bottom: 24px;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    
+    .footer-column ul {
+      list-style: none;
+      margin-left: 0;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-column ul li a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: color 0.2s;
+      font-size: 0.95rem;
+    }
+    
+    .footer-column ul li a:hover {
+      color: white;
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 32px;
+      margin-top: 32px;
+      border-top: 1px solid #334155;
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+      }
+      
+      nav ul {
+        margin-top: 16px;
+      }
+      
+      nav ul li {
+        margin: 0 12px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .page-header {
+        padding: 60px 16px;
+      }
+      
+      .content-container {
+        padding: 40px 20px;
+      }
+      
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Privacy Policy</h1>
-  <p><strong>Effective Date:</strong> April 24, 2025</p>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo-container">
+        <img src="/assets/logo.png" alt="DriveFinder Logo" class="logo">
+        <div class="logo-text">Insquad DriveFinder</div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#how-it-works">How It Works</a></li>
+          <li><a href="/#testimonials">Testimonials</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-  <p><strong>DriveFinder</strong> is a Chrome Extension that helps users search and retrieve documents stored in their own Google Drive. Your privacy is important to us, and we are committed to protecting your data.</p>
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="page-header-container">
+      <h1>Privacy Policy</h1>
+      <p class="page-subtitle">Learn how DriveFinder protects your data and respects your privacy</p>
+    </div>
+  </section>
 
-  <h2>What We Collect</h2>
-  <ul>
-    <li>Google Sign-In is used only for authentication.</li>
-    <li>We access your Google Drive <strong>file metadata</strong> (like file names and types) to perform searches. We do not access file content.</li>
-  </ul>
+  <!-- Content -->
+  <div class="content-container">
+    <p class="effective-date">Effective Date: May 1, 2025</p>
 
-  <h2>How We Use Your Data</h2>
-  <ul>
-    <li>We use your data <strong>locally</strong> to help you search your Google Drive documents.</li>
-    <li>No personal data or file content is stored or shared.</li>
-  </ul>
+    <div class="policy-section">
+      <p><strong>Insquad DriveFinder</strong> is a Chrome Extension that helps users search and retrieve documents stored in their own Google Drive. Your privacy is important to us, and we are committed to protecting your data and providing a secure experience.</p>
+    </div>
 
-  <h2>Third-Party Services</h2>
-  <p>We use Google APIs (Drive and Identity) to provide core functionality. These are official APIs provided by Google and comply with their security practices.</p>
+    <div class="policy-section">
+      <h2>What We Collect</h2>
+      <ul>
+        <li>We use Google Sign-In for authentication purposes only, so you can securely access your Google Drive files.</li>
+        <li>We only access your Google Drive <strong>file metadata</strong> (file names, types, dates) to perform searches. We do not access or store the actual content of your files.</li>
+        <li>Basic usage analytics may be collected anonymously to help us improve the extension functionality.</li>
+      </ul>
+    </div>
 
-  <h2>Data Sharing</h2>
-  <p>We do not share your data with any third parties.</p>
+    <div class="highlight-box">
+      <p><strong>Important:</strong> DriveFinder operates entirely through your browser. We never store your files or credentials on our servers. Your data stays private and secure.</p>
+    </div>
 
-  <h2>Data Storage</h2>
-  <p>Preferences like your last search are stored only in your browser (local storage). No data is stored externally.</p>
+    <div class="policy-section">
+      <h2>How We Use Your Data</h2>
+      <ul>
+        <li>We use your data <strong>locally in your browser</strong> to help you search your Google Drive documents more efficiently.</li>
+        <li>No personal data, search history, or file content is stored on our servers or shared with third parties.</li>
+        <li>Any preferences or settings are stored locally in your browser using secure storage methods.</li>
+      </ul>
+    </div>
 
-  <h2>Security</h2>
-  <p>All communication with Google APIs is encrypted and secured.</p>
+    <div class="policy-section">
+      <h2>Third-Party Services</h2>
+      <p>DriveFinder integrates with the following Google APIs to provide core functionality:</p>
+      <ul>
+        <li>Google Drive API - to search and retrieve your file metadata</li>
+        <li>Google Identity Services - for secure authentication</li>
+      </ul>
+      <p>These are official APIs provided by Google and comply with their security practices and privacy policies.</p>
+    </div>
 
-  <h2>Contact Us</h2>
-  <p>If you have any questions or concerns, you can reach us at: <a href="mailto:krishnabhagat2103@gmail.com">krishnabhagat2103@gmail.com</a></p>
+    <div class="policy-section">
+      <h2>Data Security</h2>
+      <ul>
+        <li>All communication between our extension and Google APIs is encrypted using industry-standard HTTPS protocols.</li>
+        <li>We implement OAuth 2.0 for authentication, ensuring your Google credentials are never exposed to us.</li>
+        <li>We regularly update our extension to address any security vulnerabilities.</li>
+      </ul>
+    </div>
 
-  <p>Thank you for trusting DriveFinder.</p>
+    <div class="policy-section">
+      <h2>Data Storage</h2>
+      <p>DriveFinder minimizes data storage as much as possible:</p>
+      <ul>
+        <li>User preferences and settings are stored only in your browser's local storage.</li>
+        <li>Recent search queries may be temporarily cached in your browser for performance reasons but are not transmitted to our servers.</li>
+        <li>No data is stored externally on our infrastructure.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Your Rights</h2>
+      <p>As a DriveFinder user, you have the right to:</p>
+      <ul>
+        <li>Revoke access to your Google Drive at any time through your Google Account settings</li>
+        <li>Clear all locally stored data by uninstalling the extension</li>
+        <li>Request information about any data we might have collected about your usage</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Policy Updates</h2>
+      <p>We may update this privacy policy from time to time. When we do, we will revise the "Effective Date" at the top of this page and notify users about significant changes when you next use the extension.</p>
+    </div>
+
+    <div class="contact-box">
+      <h3>Questions or Concerns?</h3>
+      <p>If you have any questions about our privacy practices or need assistance, please contact us at:</p>
+      <a href="mailto:krishnabhagat2103@gmail.com" class="contact-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z" fill="currentColor"/>
+        </svg>
+        krishnabhagat2103@gmail.com
+      </a>
+    </div>
+
+    <a href="/" class="back-link">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z" fill="currentColor"/>
+      </svg>
+      Back to Homepage
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>DriveFinder</h3>
+        <ul>
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#how-it-works">How It Works</a></li>
+          <li><a href="/#testimonials">Testimonials</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+          <li><a href="/terms.html">Terms of Service</a></li>
+          <li><a href="mailto:krishnabhagat2103@gmail.com">Contact Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Connect</h3>
+        <ul>
+          <li><a href="https://x.com/Mr_Krishna_B" target="_blank">Twitter</a></li>
+          <li><a href="https://www.linkedin.com/in/mr-krishna-bhagat/" target="_blank">LinkedIn</a></li>
+          <li><a href="mailto:krishnabhagat2103@gmail.com">Email Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2025 Insquad DriveFinder. All rights reserved.
+    </div>
+  </footer>
 </body>
 </html>
