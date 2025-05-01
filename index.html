@@ -559,15 +559,18 @@
   <header>
     <div class="header-container">
       <div class="logo-container">
-        <img src="/assets/logo.png" alt="DriveFinder Logo" class="logo">
+        <svg class="logo" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="36" height="36" rx="8" fill="#2563EB"/>
+          <path d="M24 12H12C10.9 12 10.01 12.9 10.01 14L10 26C10 27.1 10.9 28 12 28H24C25.1 28 26 27.1 26 26V14C26 12.9 25.1 12 24 12ZM12 16H19V20H12V16ZM12 22H19V24H12V22ZM24 24H21V16H24V24Z" fill="white"/>
+        </svg>
         <div class="logo-text">DriveFinder</div>
       </div>
       <nav>
         <ul>
           <li><a href="#features">Features</a></li>
           <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="/privacy.html">Privacy</a></li>
         </ul>
       </nav>
     </div>
@@ -757,4 +760,79 @@
           <path d="M12 12L8.65905 5.24C9.62865 4.43459 10.7891 3.9355 12.0168 3.80274C13.2444 3.66998 14.4848 3.90945 15.5775 4.48982C16.6702 5.07019 17.5676 5.96752 18.148 7.06013C18.7284 8.15273 18.9679 9.39304 18.835 10.62L12 12Z" fill="#2563EB"/>
           <path d="M8.65905 5.24L12 12L5.92 13.98C5.37147 12.856 5.17758 11.5797 5.36654 10.3303C5.55551 9.08096 6.11823 7.92825 6.97909 7.02343C7.83996 6.11861 8.95649 5.5061 10.177 5.27L8.65905 5.24Z" fill="#2563EB"/>
           <path d="M5.94 14.02L12 12L8.66 18.76C7.6882 17.9576 6.97958 16.8633 6.63062 15.6341C6.28166 14.4049 6.3077 13.0982 6.7038 11.8838C7.0999 10.6693 7.84818 9.603 8.85 8.82L5.94 14.02Z" fill="#2563EB"/>
-          <path d="M18.835 10.62L12 12L8.66 18.76C9.62996 19.5653 10.7905 20.0642 12.0183 20.1969C13.246 20.3295 14.4865 20.0899 15.5792 19.5093C16.6719 18.9288 17.5692 18.0313 18.1495 16.9386C18.7297 15.8458 18.969 14.6054 18.835 13.378V10.62Z" fill="#2563
+          <path d="M18.835 10.62L12 12L8.66 18.76C9.62996 19.5653 10.7905 20.0642 12.0183 20.1969C13.246 20.3295 14.4865 20.0899 15.5792 19.5093C16.6719 18.9288 17.5692 18.0313 18.1495 16.9386C18.7297 15.8458 18.969 14.6054 18.835 13.378V10.62Z" fill="#2563EB"/>
+        </svg>
+        Add to Chrome - It's Free
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>DriveFinder</h3>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+          <li><a href="/terms.html">Terms of Service</a></li>
+          <li><a href="mailto:krishnabhagat2103@gmail.com">Contact Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Connect</h3>
+        <ul>
+          <li><a href="https://twitter.com/insquaddrive" target="_blank">Twitter</a></li>
+          <li><a href="https://linkedin.com/company/insquad" target="_blank">LinkedIn</a></li>
+          <li><a href="mailto:krishnabhagat2103@gmail.com">Email Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2025 Insquad DriveFinder. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // FAQ toggle functionality
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const expanded = question.getAttribute('aria-expanded') === 'true';
+        
+        // Close all other FAQs
+        document.querySelectorAll('.faq-question').forEach(q => {
+          if (q !== question) {
+            q.setAttribute('aria-expanded', 'false');
+            q.nextElementSibling.style.display = 'none';
+          }
+        });
+        
+        // Toggle current FAQ
+        if (expanded) {
+          answer.style.display = 'none';
+          question.setAttribute('aria-expanded', 'false');
+        } else {
+          answer.style.display = 'block';
+          question.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    
+    // Initialize: Show first FAQ by default
+    const firstQuestion = document.querySelector('.faq-question');
+    if (firstQuestion) {
+      firstQuestion.setAttribute('aria-expanded', 'true');
+      firstQuestion.nextElementSibling.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
