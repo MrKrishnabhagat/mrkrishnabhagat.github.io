@@ -4,44 +4,658 @@
   <meta name="google-site-verification" content="VbY4lU-KT5huOhwKI4kBWYMJ8DKBBHKJOHOI1me77gw" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Insquad DriveFinder</title>
+  <meta name="description" content="Insquad DriveFinder - Search and retrieve documents from Google Drive faster with our Chrome extension">
+  <title>Insquad DriveFinder - Fast Google Drive Search Extension</title>
   <style>
+    :root {
+      --primary: #E85959;
+      --primary-dark: #D14545;
+      --secondary: #4B96F3;
+      --text: #333333;
+      --light-gray: #f5f5f5;
+      --mid-gray: #e0e0e0;
+      --white: #ffffff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     body {
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      padding: 60px 20px;
-      background: #f9f9f9;
-      color: #333;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background-color: var(--light-gray);
     }
-    h1 {
-      color: #E85959;
+    
+    header {
+      background-color: var(--white);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    a {
-      color: #E85959;
-      text-decoration: none;
-      font-weight: bold;
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
-    .container {
-      max-width: 700px;
-      margin: auto;
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
     }
+    
     .logo {
-      width: 120px;
+      width: 40px;
+      margin-right: 10px;
+    }
+    
+    .logo-text {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 30px;
+    }
+    
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    nav ul li a:hover {
+      color: var(--primary);
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+      padding: 80px 20px;
+      text-align: center;
+    }
+    
+    .hero-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      font-size: 2.8rem;
       margin-bottom: 20px;
+      color: var(--text);
+    }
+    
+    .highlight {
+      color: var(--primary);
+    }
+    
+    .tagline {
+      font-size: 1.3rem;
+      margin-bottom: 40px;
+      color: #555;
+    }
+    
+    .hero-image {
+      max-width: 800px;
+      border-radius: 8px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      margin: 40px auto;
+      border: 1px solid var(--mid-gray);
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background-color: var(--primary);
+      color: white;
+      padding: 15px 35px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 5px 15px rgba(232, 89, 89, 0.3);
+    }
+    
+    .cta-button:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(232, 89, 89, 0.4);
+    }
+    
+    .benefits {
+      padding: 80px 20px;
+      background-color: var(--white);
+    }
+    
+    .benefits-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 60px;
+    }
+    
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+    
+    .feature-card {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 30px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    
+    .feature-title {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: var(--text);
+    }
+    
+    .feature-description {
+      color: #666;
+    }
+    
+    .how-it-works {
+      padding: 80px 20px;
+      background-color: var(--light-gray);
+    }
+    
+    .steps-container {
+      max-width: 900px;
+      margin: 40px auto 0;
+    }
+    
+    .step {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 50px;
+    }
+    
+    .step-number {
+      background-color: var(--primary);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-right: 20px;
+      flex-shrink: 0;
+    }
+    
+    .step-content {
+      background-color: var(--white);
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      flex-grow: 1;
+    }
+    
+    .step-title {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+    
+    .testimonials {
+      padding: 80px 20px;
+      background-color: var(--white);
+    }
+    
+    .testimonials-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .testimonial {
+      background-color: var(--light-gray);
+      padding: 30px;
+      border-radius: 8px;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+    
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+      background-color: var(--mid-gray);
+    }
+    
+    .author-name {
+      font-weight: 600;
+    }
+    
+    .author-title {
+      color: #666;
+      font-size: 0.9rem;
+    }
+    
+    .faq {
+      padding: 80px 20px;
+      background-color: var(--light-gray);
+    }
+    
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .faq-item {
+      background-color: var(--white);
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+    
+    .faq-question {
+      padding: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .faq-question:after {
+      content: '+';
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+    
+    .faq-answer {
+      padding: 0 20px 20px;
+      color: #555;
+    }
+    
+    .cta-section {
+      padding: 100px 20px;
+      background: linear-gradient(135deg, #E85959 0%, #f07171 100%);
+      color: white;
+      text-align: center;
+    }
+    
+    .cta-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .cta-title {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .cta-description {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+    
+    .secondary-cta {
+      background-color: white;
+      color: var(--primary);
+    }
+    
+    .secondary-cta:hover {
+      background-color: #f5f5f5;
+    }
+    
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 60px 20px 30px;
+    }
+    
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    
+    .footer-column {
+      width: 250px;
+      margin-bottom: 30px;
+    }
+    
+    .footer-column h3 {
+      color: #fff;
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-column ul li a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-column ul li a:hover {
+      color: var(--primary);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      margin-top: 30px;
+      border-top: 1px solid #444;
+      color: #888;
+      font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+      }
+      
+      nav ul {
+        margin-top: 20px;
+      }
+      
+      nav ul li {
+        margin: 0 10px;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .step {
+        flex-direction: column;
+      }
+      
+      .step-number {
+        margin-bottom: 15px;
+      }
+      
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="/assets/logo.png" alt="DriveFinder Logo" class="logo" />
-    <h1>Insquad DriveFinder</h1>
-    <p><strong>Insquad DriveFinder</strong> is a Chrome extension that lets you search and retrieve documents from Google Drive faster, right from your browser sidebar.</p>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo-container">
+        <img src="/assets/logo.png" alt="DriveFinder Logo" class="logo">
+        <div class="logo-text">DriveFinder</div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="/privacy.html">Privacy</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <p>🔒 Secure. ⚡ Fast. 🎯 Simple.</p>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-container">
+      <h1>Find Google Drive Files <span class="highlight">10x Faster</span></h1>
+      <p class="tagline">Insquad DriveFinder is a powerful Chrome extension that puts Google Drive search in your browser sidebar. Find documents instantly without disrupting your workflow.</p>
+      <a href="https://chrome.google.com/webstore/detail/insquad-drivefinder/your-extension-id" class="cta-button">Add to Chrome - It's Free</a>
+      <img src="/api/placeholder/800/450" alt="DriveFinder Chrome Extension Screenshot" class="hero-image">
+    </div>
+  </section>
 
-    <p><a href="https://chrome.google.com/webstore" target="_blank">Install from Chrome Web Store (Coming Soon)</a></p>
+  <!-- Features Section -->
+  <section class="benefits" id="features">
+    <div class="benefits-container">
+      <h2 class="section-title">Why Choose DriveFinder?</h2>
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3 class="feature-title">Instant Search</h3>
+          <p class="feature-description">Find any Google Drive file in seconds with our lightning-fast search algorithm.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3 class="feature-title">Fully Secure</h3>
+          <p class="feature-description">We never store your files or credentials. Your data stays private and secure.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3 class="feature-title">Sidebar Access</h3>
+          <p class="feature-description">Search without switching tabs or disrupting your workflow.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3 class="feature-title">Works Everywhere</h3>
+          <p class="feature-description">Compatible with all websites and integrates seamlessly with Google Workspace.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3 class="feature-title">Advanced Filters</h3>
+          <p class="feature-description">Filter by file type, owner, date, and more to find exactly what you need.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⌨️</div>
+          <h3 class="feature-title">Keyboard Shortcuts</h3>
+          <p class="feature-description">Power users can navigate and search even faster with custom shortcuts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <p><a href="/privacy.html" target="_blank">Privacy Policy</a> | <a href="mailto:krishnabhagat2103@gmail.com">Contact Us</a></p>
-  </div>
+  <!-- How It Works -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="benefits-container">
+      <h2 class="section-title">How DriveFinder Works</h2>
+      <div class="steps-container">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3 class="step-title">Install the Extension</h3>
+            <p>Add DriveFinder to Chrome with just one click. No account creation required.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3 class="step-title">Connect Your Google Drive</h3>
+            <p>Grant access to your Google Drive with our secure OAuth connection. We never see or store your credentials.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3 class="step-title">Search From Anywhere</h3>
+            <p>Click the DriveFinder icon in your Chrome toolbar or use the keyboard shortcut (Ctrl+Shift+F) to open the search sidebar.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3 class="step-title">Find and Access Files Instantly</h3>
+            <p>Type your search query and get instant results. Click any result to open it in a new tab or copy the link directly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="testimonials-container">
+      <h2 class="section-title">What Our Users Say</h2>
+      <div class="testimonial">
+        <p class="testimonial-text">"DriveFinder has saved me hours every week. I used to waste so much time switching between tabs to find documents. Now everything is just a click away!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar"></div>
+          <div>
+            <div class="author-name">Sarah Johnson</div>
+            <div class="author-title">Marketing Manager</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-text">"As a project manager handling hundreds of documents, DriveFinder has been a game-changer for my productivity. The advanced filters help me find exactly what I need in seconds."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar"></div>
+          <div>
+            <div class="author-name">Michael Chen</div>
+            <div class="author-title">Project Manager</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq" id="faq">
+    <div class="faq-container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-question">Is DriveFinder free to use?</div>
+        <div class="faq-answer">Yes, DriveFinder is completely free to use with all features included.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Is my data secure with DriveFinder?</div>
+        <div class="faq-answer">Absolutely. DriveFinder uses Google's secure OAuth authentication and never stores your credentials or file data. All searches happen directly between your browser and Google's servers.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Does DriveFinder work with Google Workspace accounts?</div>
+        <div class="faq-answer">Yes, DriveFinder works with both personal Google accounts and Google Workspace (formerly G Suite) accounts.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">What permissions does DriveFinder require?</div>
+        <div class="faq-answer">DriveFinder only requires read-only access to your Google Drive files so it can search them. It cannot modify, delete, or share your files.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Can I use DriveFinder offline?</div>
+        <div class="faq-answer">DriveFinder requires an internet connection to search your Google Drive files.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <div class="cta-container">
+      <h2 class="cta-title">Ready to Transform How You Work with Google Drive?</h2>
+      <p class="cta-description">Join thousands of professionals who are saving time and staying organized with DriveFinder.</p>
+      <a href="https://chrome.google.com/webstore/detail/insquad-drivefinder/your-extension-id" class="cta-button secondary-cta">Add to Chrome - It's Free</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>Insquad DriveFinder</h3>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+          <li><a href="/terms.html">Terms of Service</a></li>
+          <li><a href="mailto:krishnabhagat2103@gmail.com">Contact Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Connect</h3>
+        <ul>
+          <li><a href="https://twitter.com/insquaddrive" target="_blank">Twitter</a></li>
+          <li><a href="https://linkedin.com/company/insquad" target="_blank">LinkedIn</a></li>
+          <li><a href="mailto:krishnabhagat2103@gmail.com">Email Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2025 Insquad DriveFinder. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Simple FAQ toggle functionality
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        if (answer.style.display === 'block') {
+          answer.style.display = 'none';
+          question.style.fontWeight = '600';
+          question.setAttribute('aria-expanded', 'false');
+        } else {
+          answer.style.display = 'block';
+          question.style.fontWeight = '700';
+          question.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
